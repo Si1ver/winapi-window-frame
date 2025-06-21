@@ -1,0 +1,33 @@
+---
+
+parse:
+  additional_commands: {}
+  override_spec: {}
+  vartags: []
+  proptags: []
+
+format:
+  disable: false
+  line_width: 120
+  tab_size: 2
+  use_tabchars: false
+  fractional_tab_policy: use-space
+  max_subgroups_hwrap: 2
+  max_pargs_hwrap: 3
+  max_rows_cmdline: 2
+  separate_ctrl_name_with_space: false
+  separate_fn_name_with_space: false
+  dangle_parens: false
+  dangle_align: prefix
+  line_ending: unix
+
+markup:
+  enable_markup: false
+
+lint:
+  disabled_codes: []
+
+encode:
+  emit_byteorder_mark: false
+  input_encoding: utf-8
+  output_encoding: utf-8

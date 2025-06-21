@@ -33,3 +33,7 @@
 *.exe
 *.out
 *.app
+
+# Build output directories.
+build*/
+out/build*/
