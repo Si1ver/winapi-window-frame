@@ -15,7 +15,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - uses: Si1ver/run-cmake-format
+    - uses: Si1ver/run-cmake-format@main
       with:
         command: format
         path: '.'
@@ -27,7 +27,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - uses: Si1ver/run-cmake-format
+    - uses: Si1ver/run-cmake-format@main
       with:
         command: lint
         path: '.'
