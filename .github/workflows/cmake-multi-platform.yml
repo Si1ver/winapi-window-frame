@@ -1,17 +1,18 @@
 ---
-  
-# This starter workflow is for a CMake project running on multiple platforms. There is a different starter workflow if you just want a single platform.
-# See: https://github.com/actions/starter-workflows/blob/main/ci/cmake-single-platform.yml
-name: CMake on multiple platforms
+
+name: Build with CMake on Windows
 
 on:
   push:
     branches: [ "main" ]
+
   pull_request:
     branches: [ "main" ]
 
 jobs:
   build:
+    name: "Build preset '${{ matrix.cmake_preset }}' in '${{ matrix.cmake_build_configuration }}' configuration"
+
     runs-on: ${{ matrix.os }}
 
     strategy:
@@ -39,22 +40,22 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - name: Set reusable strings
+    - name: Set Reusable Strings
       # Turn repeated input strings (such as the build output directory) into step outputs. These step outputs can be used throughout the workflow file.
       id: strings
       run: |
         chcp 65001 # Set code page to UTF-8.
         echo "build-output-dir=${{ github.workspace }}\build" >> $env:GITHUB_OUTPUT
 
-    - name: Set environment variables
+    - name: Set Environment Variables
       run: |
         chcp 65001 # Set code page to UTF-8.
         echo ("VCPKG_ROOT=" + $env:VCPKG_INSTALLATION_ROOT) >> $env:GITHUB_ENV
 
-    - name: Configure CMake
+    - name: Configure with CMake
       run: |
         cmake -B ${{ steps.strings.outputs.build-output-dir }} -S ${{ github.workspace }} --preset ${{ matrix.cmake_preset }}
 
-    - name: Build
+    - name: Build with CMake
       run: |
         cmake --build ${{ steps.strings.outputs.build-output-dir }} --preset ${{ matrix.cmake_preset }}-${{ matrix.cmake_build_configuration }}
